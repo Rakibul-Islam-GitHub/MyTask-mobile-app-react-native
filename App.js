@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import TaskList from './components/TaskList';
 
 export default function App() {
   const [enteredTask, setEnteredTask]= useState('')
   const [task, setTask]= useState([])
   const handleTask=(enteredTask)=>{
     
-    const result=  [...task, enteredTask ]
+    const result=  [...task, {key:Math.round().toString(),value:enteredTask} ]
      setTask(result)
     
     
@@ -21,10 +22,9 @@ export default function App() {
       </View>
 
       <View >
-        {task.map((task)=>(
-          <View key={task} style={styles.taskListContainer}><Text style={{color:'white', fontWeight:'bold',}} >{task}</Text></View>
-        )
-        )}
+        <FlatList data={task} renderItem={(itemlist)=>(
+          <TaskList item={itemlist.item.value}/>
+        )} />
       </View>
       
     </View>
@@ -39,12 +39,5 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
   },
-  taskListContainer:{
-    backgroundColor:'chocolate',
-    padding:15,
-    marginVertical:6,
-    
-    
-    
-  }
+  
 });
