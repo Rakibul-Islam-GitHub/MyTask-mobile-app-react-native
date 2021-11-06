@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
 
 export default function App() {
-  const [enteredTask, setEnteredTask]= useState('')
+
   const [task, setTask]= useState([])
   const handleTask=(enteredTask)=>{
     
@@ -16,10 +17,7 @@ export default function App() {
   return (
     <View style={styles.container}> 
       
-      <View style={styles.inputContainer}>
-      <TextInput onChangeText={(value)=>setEnteredTask(value)} style={{width:'80%', borderWidth:1, borderColor:'gray', padding:5}} autoCapitalized="words"   placeholder="Enter Task"></TextInput>
-      <Button onPress={()=>handleTask(enteredTask)} title="Add"></Button>
-      </View>
+      <TaskInput handleTask={handleTask}/>
 
       <View >
         <FlatList data={task} renderItem={(itemlist)=>(
@@ -35,9 +33,6 @@ const styles = StyleSheet.create({
   container:{
     padding:60,
   },
-  inputContainer:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-  },
+  
   
 });
