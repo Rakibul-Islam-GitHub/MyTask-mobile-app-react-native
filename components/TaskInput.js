@@ -1,32 +1,50 @@
 import React, {useState} from 'react';
-import { Button, TextInput, View, StyleSheet} from 'react-native';
+import { Button, TextInput, View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 const TaskInput = ({handleTask}) => {
     const [enteredTask, setEnteredTask]= useState('')
     return (
-      <View style={styles.inputContainer}>
+        <View>
         <TextInput
+        style={styles.inputContainer}
           onChangeText={(value) => setEnteredTask(value)}
-          style={{
-            width: "80%",
-            borderWidth: 1,
-            borderColor: "gray",
-            padding: 5,
-          }}
+          
           autoCapitalized="words"
           placeholder="Enter Task"
         ></TextInput>
-        <Button onPress={() => handleTask(enteredTask)} title="Add"></Button>
-      </View>
+        <TouchableOpacity onPress={() => handleTask(enteredTask)}>
+          <View style={styles.btn}>
+          <Text style={{color:'white', fontWeight:'bold', fontSize:15}}>Add Task</Text>
+          </View>
+
+        </TouchableOpacity>
+        </View>
+      
     );
 };
 
 const styles = StyleSheet.create({
     
     inputContainer:{
-      flexDirection:'row',
-      justifyContent:'space-between',
+    backgroundColor: "#fff",
+    padding: 15,
+    borderRadius: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     },
+    btn:{
+    flexDirection: "row",
+    padding: 10,
+    marginTop: 10,
+    backgroundColor: "#008080",
+    color: "#ffffff",
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    
+    }
     
   });
 
