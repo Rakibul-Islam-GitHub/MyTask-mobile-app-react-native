@@ -4,23 +4,23 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const TaskList = (props) => {
     return (
-      <View style={styles.itemWrapper}>
-          <View key={props.item} style={styles.taskListContainer}>
+      <View  style={styles.itemWrapper}>
+          <View  style={styles.taskListContainer}>
            <MaterialIcons
               style={{ marginRight: 5, color: "#78e08f" }}
               name='visibility'
               size={22}
               
             />
-        <Text style={{ color: "white", fontWeight: "bold", textTransform:'capitalize' }}>{props.item}</Text>
+        <Text  style={{ color: "white", maxWidth:'90%', fontWeight: "bold", textTransform:'capitalize' }}>{props.item}</Text>
 
         
       </View>
       <MaterialIcons
-        
         name='delete'
         size={25}
         color='#eb2f06'
+        onPress={()=>props.removeTask(props.idkey)}
       />
       </View>
     );

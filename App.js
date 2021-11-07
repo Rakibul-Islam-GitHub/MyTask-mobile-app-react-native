@@ -9,19 +9,24 @@ export default function App() {
   const [task, setTask]= useState([])
   const handleTask=(enteredTask)=>{
     
-    const result=  [...task, {key:Math.round().toString(),value:enteredTask} ]
+    const result=  [...task, {key:Math.random().toString(),value:enteredTask} ]
      setTask(result)
     
     
+  }
+  const removeTask=(idkey)=>{
+    
+    const taskAfterRemove= task.filter(task=> task.key!= idkey)
+    setTask(taskAfterRemove)
   }
   return (
     <View style={styles.container}> 
       
       <TaskInput handleTask={handleTask}/>
 
-      <View >
-        <FlatList data={task} renderItem={(itemlist)=>(
-          <TaskList item={itemlist.item.value}/>
+      <View style={{flex: 1, marginTop:20}} >
+        <FlatList  data={task} renderItem={(itemlist)=>(
+          <TaskList idkey={itemlist.item.key} item={itemlist.item.value} removeTask={removeTask}/>
         )} />
       </View>
       
@@ -31,7 +36,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container:{
-    padding:60,
+    flex: 1,
+    paddingTop: 80,
+    paddingHorizontal: 20,
+    backgroundColor: "#E8EAED",
+    height:'100%'
   },
   
   
