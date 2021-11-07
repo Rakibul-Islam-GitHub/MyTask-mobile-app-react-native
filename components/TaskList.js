@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     },
     taskListContainer:{
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: 'flex-start',
+        alignItems: "center"
         
 
       },
